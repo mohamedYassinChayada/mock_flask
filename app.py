@@ -9,3 +9,4 @@ def hello_world():
 if __name__ == '__main__':
     app.run(debug=True)
     ##comment: This is a simple Flask application that returns 'Hello, World! yoooooo' when accessed at the root URL.
+    ##comment: The application is set to run in debug mode for easier development and troubleshooting.
