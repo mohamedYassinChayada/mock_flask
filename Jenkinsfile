@@ -24,9 +24,9 @@ pipeline {
                     . venv/bin/activate
                     pip install flake8
                     echo "=== Checking for syntax errors and code issues ==="
-                    flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                    flake8 *.py --count --select=E9,F63,F7,F82 --show-source --statistics
                     echo "=== Full lint report ==="
-                    flake8 . --count --max-line-length=120 --statistics --exclude=venv
+                    flake8 *.py --count --max-line-length=120 --statistics
                 '''
             }
         }
