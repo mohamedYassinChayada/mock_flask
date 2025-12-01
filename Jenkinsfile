@@ -18,12 +18,25 @@ pipeline {
             }
         }
 
+        stage('Lint') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    pip install flake8
+                    echo "=== Checking for syntax errors and code issues ==="
+                    flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+                    echo "=== Full lint report ==="
+                    flake8 . --count --max-line-length=120 --statistics --exclude=venv
+                '''
+            }
+        }
+
         stage('Test') {
             steps {
                 sh '''
                     . venv/bin/activate
                     pip install pytest
-                    python -m pytest --junitxml=test-results.xml || true
+                    python -m pytest --junitxml=test-results.xml -v
                 '''
             }
         }
